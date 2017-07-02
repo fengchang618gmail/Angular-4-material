@@ -1,20 +1,214 @@
-<!--The whole content below can be removed with the new code.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=" />
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/docs/ts/latest/tutorial/">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="http://angularjs.blogspot.ca/">Angular blog</a></h2>
-  </li>
-</ul>
+<h1>Angular 4 Material</h1>
 
+<h2>From Controls</h2>
+
+<h3>Autocomplete</h3>
+<!--
+import { ReactiveFormsModule  } from '@angular/forms';
+import { MdAutocompleteModule, MdInputModule } from '@angular/material';
+-->
+<md-input-container>
+  <input mdInput placeholder="State" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+</md-input-container>
+
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let state of filteredStates | async" [value]="state">
+    {{ state }}
+  </md-option>
+</md-autocomplete>
+
+
+<h3>Checkbox</h3>
+<!--
+import { MdCheckboxModule } from '@angular/material';
+-->
+<div class = "flex">
+<md-checkbox labelPosition = "before">Check me!</md-checkbox>
+<md-checkbox labelPosition = "after">Check me!</md-checkbox>
+</div>
+
+
+<h3>Datepicker</h3>
+<!--
+import { MdDatepickerModule, MdNativeDateModule } from '@angular/material';
+-->
+<md-input-container>
+  <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+  <button mdSuffix [mdDatepickerToggle]="picker"></button>
+</md-input-container>
+<md-datepicker #picker></md-datepicker>
+
+
+<h3>Input</h3>
+<!--
+import { MdInputModule } from '@angular/material';
+-->
+<md-input-container>
+  <input mdInput placeholder="Favorite food" value="Sushi">
+</md-input-container>
+
+
+<h3>Radio button</h3>
+<!--
+import { MdRadioModule } from '@angular/material';
+-->
+<md-radio-group>
+  <md-radio-button value="1">Option 1</md-radio-button>
+  <md-radio-button value="2">Option 2</md-radio-button>
+</md-radio-group>
+<br>
+<p class="example-selected-value">Your favorite season is: {{favoriteSeason}}</p>
+<md-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
+  <md-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
+    {{season}}
+  </md-radio-button>
+</md-radio-group>
+
+
+<h3>Select</h3>
+<!--
+import { FormsModule } from '@angular/forms';
+import { MdSelectModule } from '@angular/material';
+-->
+<section class="example-section">
+  <label class="example-margin">floatPlaceholder:</label>
+  <md-radio-group [(ngModel)]="selectedfloatPlaceholder">
+    <md-radio-button value="always">Always</md-radio-button>
+    <md-radio-button value="auto">Auto</md-radio-button>
+    <md-radio-button value="never">Never</md-radio-button>
+  </md-radio-group>
+</section>
+
+<form>
+<p> Selected value: {{selectedValue}} </p>
+<md-select placeholder="Favorite food" [floatPlaceholder]="selectedfloatPlaceholder">
+  <md-option>None</md-option>
+  <md-option *ngFor="let food of foods" [value]="food.value">
+    {{ food.viewValue }}
+  </md-option>
+</md-select>
+</form>
+
+
+<h3>Slider</h3>
+<!--
+import { MdSliderModule } from '@angular/material';
+import { MdCardModule } from '@angular/material';
+-->
+<md-card>
+  <md-card-content>
+  <h4 class="example-h2">Slider configuration</h4>
+    <section class="example-section">
+      <md-input-container class="example-margin">
+        <input mdInput type="number" placeholder="Value" [(ngModel)]="value">
+      </md-input-container>
+      <md-input-container class="example-margin">
+        <input mdInput type="number" placeholder="Min value" [(ngModel)]="min">
+      </md-input-container>
+      <md-input-container class="example-margin">
+        <input mdInput type="number" placeholder="Max value" [(ngModel)]="max">
+      </md-input-container>
+      <md-input-container class="example-margin">
+        <input mdInput type="number" placeholder="Step size" [(ngModel)]="step">
+      </md-input-container>
+    </section>
+
+    <section class="example-section">
+      <md-checkbox class="example-margin" [(ngModel)]="showTicks">Show ticks</md-checkbox>
+      <md-checkbox class="example-margin" [(ngModel)]="autoTicks" *ngIf="showTicks">
+        Auto ticks
+      </md-checkbox>
+      <md-input-container class="example-margin" *ngIf="showTicks && !autoTicks">
+        <input mdInput type="number" placeholder="Tick interval" [(ngModel)]="tickInterval">
+      </md-input-container>
+    </section>
+
+    <section class="example-section">
+      <md-checkbox class="example-margin" [(ngModel)]="thumbLabel">Show thumb label</md-checkbox>
+    </section>
+
+    <section class="example-section">
+      <md-checkbox class="example-margin" [(ngModel)]="vertical">Vertical</md-checkbox>
+      <md-checkbox class="example-margin" [(ngModel)]="invert">Inverted</md-checkbox>
+    </section>
+
+    <section class="example-section">
+      <md-checkbox class="example-margin" [(ngModel)]="disabled">Disabled</md-checkbox>
+    </section>
+
+  </md-card-content>
+</md-card>
+
+<br>
+
+<md-card class="result">
+  <md-card-content>
+    <h4 class="example-h2">Result</h4>
+
+    <md-slider
+        class="example-margin"
+        [(ngModel)]="sliderValue"
+        [disabled]="disabled"
+        [invert]="invert"
+        [max]="max"
+        [min]="min"
+        [step]="step"
+        [thumb-label]="thumbLabel"
+        [tick-interval]="tickInterval"
+        [value]="value"
+        [vertical]="vertical">
+    </md-slider>
+    <p>Slider value: {{sliderValue}}</p>
+  </md-card-content>
+</md-card>
+
+
+<h3>Slide toggle</h3>
+<!--
+import { MdSlideToggleModule } from '@angular/material';
+-->
+<md-slide-toggle>Slide me!</md-slide-toggle>
+<md-card>
+  <md-card-content>
+    <h4 class="example-h2">Slide toggle configuration</h4>
+
+    <section class="example-section">
+      <label class="example-margin">Color:</label>
+      <md-radio-group [(ngModel)]="color">
+        <md-radio-button class="example-margin" value="primary">
+          Primary
+        </md-radio-button>
+        <md-radio-button class="example-margin" value="accent">
+          Accent
+        </md-radio-button>
+        <md-radio-button class="example-margin" value="warn">
+          Warn
+        </md-radio-button>
+      </md-radio-group>
+    </section>
+
+    <section class="example-section">
+      <md-checkbox class="example-margin" [color]="color" [(ngModel)]="checked">Checked</md-checkbox>
+    </section>
+
+    <section class="example-section">
+      <md-checkbox class="example-margin" [color]="color" [(ngModel)]="disabled">Disabled</md-checkbox>
+    </section>
+  </md-card-content>
+</md-card>
+
+<md-card class="result">
+  <md-card-content>
+    <h2 class="example-h2">Result</h2>
+
+    <section class="example-section">
+      <md-slide-toggle
+          class="example-margin"
+          [color]="color"
+          [checked]="checked"
+          [disabled]="disabled">
+        Slide me!
+      </md-slide-toggle>
+    </section>
+  </md-card-content>
+</md-card>
